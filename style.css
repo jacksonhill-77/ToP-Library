@@ -1,1 +1,23 @@
+html {
+  height: 100%;
+  width: 100%;
+}
 
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(autofill, minmax(100px, 1fr));
+}
+
+.title {
+  font-size: 16px;
+}
+
+.body {
+  font-size: 12px;
+}
