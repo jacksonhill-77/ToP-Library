@@ -8,6 +8,7 @@ body {
   flex-direction: column;
   gap: 30px;
   font-family: 'Roboto', sans-serif;
+  align-items: center;
 }
 
 h4, p {
@@ -35,4 +36,13 @@ h4, p {
   border: 2px rgb(240, 235, 197) solid;
   border-radius: 10px;
   padding: 10px;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  background-color: rgb(202, 225, 233);
+  border: 2px rgb(139, 155, 160) solid;
+  border-radius: 15px;
+  font-size: 1rem;
 }
