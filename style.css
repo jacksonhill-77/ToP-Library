@@ -7,17 +7,32 @@ body {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+h4, p {
+  padding: 8px;
+  margin: 0px;
 }
 
 #container {
   display: grid;
-  grid-template-columns: repeat(autofill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
 }
 
 .title {
   font-size: 16px;
+  font-style: italic;
 }
 
 .body {
-  font-size: 12px;
+  font-size: 14px;
+}
+
+.card {
+  background-color: rgb(239, 245, 229);
+  border: 2px rgb(240, 235, 197) solid;
+  border-radius: 10px;
+  padding: 10px;
 }
