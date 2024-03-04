@@ -1,9 +1,15 @@
-function addBookToLibrary() {
-  const title = prompt('Please enter the title of the book you wish to add to the library: ');
-  const author = prompt('Please enter the author of the book you wish to add to the library: ');
-  const pages = prompt('Please enter the amount of pages of the book you wish to add to the library: ');
+function Book(title, author, pages) {
+  this.title = title;
+  this.author = author; 
+  this.pages = pages;
+}
+
+function generateBook() {
+  const title = document.querySelector("#title").value;
+  const author = document.querySelector("#author").value;
+  const pages = document.querySelector("#pages").value;
   const book = new Book(title, author, pages);
-  myLibrary.push(book);
+  return book;
 }
 
 function addBookInfoToDiv(book, div) {
@@ -30,6 +36,8 @@ function addBookDivToContainer(book, container) {
   container.appendChild(bookElement);
 }
 
+// For initialisation of dummy books
+
 function addBooksToContainer() {
   const container = document.getElementById("container");
   
@@ -40,15 +48,27 @@ function addBooksToContainer() {
 
 
 
-const myLibrary = []
-const bookInput = document.getElementById("book-input");
-bookInput.addEventListener("click", addBookToLibrary);
+const myLibrary = [];
+const container = document.getElementById("container");
+const dialog = document.querySelector("#dialog");
 
-function Book(title, author, pages) {
-  this.title = title;
-  this.author = author; 
-  this.pages = pages;
-}
+const form = document.querySelector("#form");
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const book = generateBook();
+  addBookDivToContainer(book, container);
+})
+
+const showButton = document.querySelector("#show-button");
+showButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+const hideButton = document.querySelector("#hide-button");
+hideButton.addEventListener("click", () => {
+  dialog.close();
+});
 
 const book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 218);
 const book2 = new Book("To Kill a Mockingbird", "Harper Lee", 324);
