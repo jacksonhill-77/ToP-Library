@@ -46,7 +46,12 @@ function addBookDivToContainer(book, container) {
 // For initialisation of dummy books
 
 function addBooksToContainer() {
-  const container = document.getElementById("container");
+  if (document.querySelector('.container')) {
+    document.querySelector('.container').remove();
+  };
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  container.classList.add('container')
   
   for (const book of myLibrary) {
     addBookDivToContainer(book, container)
@@ -64,7 +69,8 @@ form.addEventListener('submit', function(e) {
   e.preventDefault();
 
   const book = generateBook();
-  addBookDivToContainer(book, container);
+  myLibrary.push(book)
+  addBooksToContainer();
 })
 
 const showButton = document.querySelector("#show-button");
