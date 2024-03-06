@@ -12,29 +12,39 @@ function generateBook(libraryArray) {
   const pages = document.querySelector("#pages").value;
   let read = false;
   document.querySelector('#read').value == "y" ? read = true : read = false;
-  const index = libraryArray.length();
+  const index = libraryArray.length;
   const book = new Book(title, author, pages, read, index);
   return book;
 }
 
 function addBookInfoToDiv(book, div) {
+  let infoDiv = document.createElement('div');
+  infoDiv.classList.add('info')
   let bookTitle = document.createElement("h4");
   bookTitle.classList.add("title");
   bookTitle.textContent = book.title;
   let bookAuthor = document.createElement("p");
   bookAuthor.classList.add("body");
-  bookAuthor.textContent = book.author;
+  bookAuthor.textContent = `By ${book.author}`;
   let bookPages = document.createElement("p");
   bookPages.classList.add("body");
   bookPages.textContent = `${book.pages} pages`;
   let bookRead = document.createElement("p");
   bookRead.classList.add("body");
   book.read == true ? bookRead.textContent = 'Read' : bookRead.textContent = 'Unread';
+  let bookRemoveButton = document.createElement('button');
+  bookRemoveButton.classList.add('remove')
+  bookRemoveButton.textContent = 'Remove book'
+  bookRemoveButton.addEventListener('click', () => {
+    document.querySelector(`[data-index="${book.index}"]`).remove();
+  })
 
-  div.appendChild(bookTitle);
-  div.appendChild(bookAuthor);
-  div.appendChild(bookPages);
-  div.appendChild(bookRead);
+  infoDiv.appendChild(bookTitle);
+  infoDiv.appendChild(bookAuthor);
+  infoDiv.appendChild(bookPages);
+  infoDiv.appendChild(bookRead);
+  div.appendChild(infoDiv);
+  div.appendChild(bookRemoveButton);
   div.setAttribute('data-index',`${book.index}`);
 }
 
