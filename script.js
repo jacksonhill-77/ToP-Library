@@ -1,17 +1,19 @@
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, index) {
   this.title = title;
   this.author = author; 
   this.pages = pages;
   this.read = read;
+  this.index = index;
 }
 
-function generateBook() {
+function generateBook(libraryArray) {
   const title = document.querySelector("#title").value;
   const author = document.querySelector("#author").value;
   const pages = document.querySelector("#pages").value;
   let read = false;
   document.querySelector('#read').value == "y" ? read = true : read = false;
-  const book = new Book(title, author, pages, read);
+  const index = libraryArray.length();
+  const book = new Book(title, author, pages, read, index);
   return book;
 }
 
@@ -33,6 +35,7 @@ function addBookInfoToDiv(book, div) {
   div.appendChild(bookAuthor);
   div.appendChild(bookPages);
   div.appendChild(bookRead);
+  div.setAttribute('data-index',`${book.index}`);
 }
 
 function addBookDivToContainer(book, container) {
@@ -68,7 +71,7 @@ const form = document.querySelector("#form");
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  const book = generateBook();
+  const book = generateBook(myLibrary);
   myLibrary.push(book)
   addBooksToContainer();
 })
@@ -83,11 +86,11 @@ hideButton.addEventListener("click", () => {
   dialog.close();
 });
 
-const book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 218, false);
-const book2 = new Book("To Kill a Mockingbird", "Harper Lee", 324, true);
-const book3 = new Book("1984", "George Orwell", 328, true);
-const book4 = new Book("Pride and Prejudice", "Jane Austen", 432, false);
-const book5 = new Book("The Catcher in the Rye", "J.D. Salinger", 224, false);
+const book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 218, false, 0);
+const book2 = new Book("To Kill a Mockingbird", "Harper Lee", 324, true, 1);
+const book3 = new Book("1984", "George Orwell", 328, true, 2);
+const book4 = new Book("Pride and Prejudice", "Jane Austen", 432, false, 3);
+const book5 = new Book("The Catcher in the Rye", "J.D. Salinger", 224, false, 4);
 
 myLibrary.push(book1, book2, book3, book4, book5);
 addBooksToContainer()
