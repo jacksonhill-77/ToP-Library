@@ -29,9 +29,27 @@ function addBookInfoToDiv(book, div) {
   let bookPages = document.createElement("p");
   bookPages.classList.add("body");
   bookPages.textContent = `${book.pages} pages`;
-  let bookRead = document.createElement("p");
-  bookRead.classList.add("body");
-  book.read == true ? bookRead.textContent = 'Read' : bookRead.textContent = 'Unread';
+
+  let bookRead = document.createElement('div');
+  bookRead.classList.add('read');
+  let bookReadCheckbox = document.createElement("input");
+  bookReadCheckbox.type = 'checkbox'
+  bookReadCheckbox.id = 'read-book';
+  bookReadCheckbox.name = 'read-book';
+  book.read == true ? bookReadCheckbox.checked = true : bookReadCheckbox.checked = false;
+  bookReadCheckbox.addEventListener('change', function(e) {
+    label = document.querySelector(`div[data-index="${book.index}"]>label`);
+    if (e.target.checked) {
+      label.textContent = 'Unread';
+    } else {
+      label.textContent = 'Unread';
+    }
+  })
+  let bookReadLabel = document.createElement("label");
+  bookReadLabel.classList.add("body");
+  bookReadLabel.for = 'read-book';
+  book.read == true ? bookReadLabel.textContent = 'Read' : bookReadLabel.textContent = 'Unread'; 
+
   let bookRemoveButton = document.createElement('button');
   bookRemoveButton.classList.add('remove')
   bookRemoveButton.textContent = 'Remove book'
@@ -39,6 +57,8 @@ function addBookInfoToDiv(book, div) {
     document.querySelector(`[data-index="${book.index}"]`).remove();
   })
 
+  bookRead.appendChild(bookReadCheckbox);
+  bookRead.appendChild(bookReadLabel);
   infoDiv.appendChild(bookTitle);
   infoDiv.appendChild(bookAuthor);
   infoDiv.appendChild(bookPages);

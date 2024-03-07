@@ -52,6 +52,16 @@ h4, p {
   font-size: 14px;
 }
 
+div.read {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+div.read>input {
+  margin-left: 8px;
+}
+
 .card {
   background-color: rgb(239, 245, 229);
   border: 2px rgb(240, 235, 197) solid;
