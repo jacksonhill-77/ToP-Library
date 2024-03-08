@@ -17,7 +17,7 @@ function generateBook(libraryArray) {
   return book;
 }
 
-function addBookInfoToDiv(book, div) {
+function createCardInfoDiv(book, div) {
   let infoDiv = document.createElement('div');
   infoDiv.classList.add('info')
   let bookTitle = document.createElement("h4");
@@ -29,7 +29,14 @@ function addBookInfoToDiv(book, div) {
   let bookPages = document.createElement("p");
   bookPages.classList.add("body");
   bookPages.textContent = `${book.pages} pages`;
+  infoDiv.appendChild(bookTitle);
+  infoDiv.appendChild(bookAuthor);
+  infoDiv.appendChild(bookPages);
 
+  return infoDiv;
+}
+
+function createBookReadDiv(book) {
   let bookRead = document.createElement('div');
   bookRead.classList.add('read');
   let bookReadCheckbox = document.createElement("input");
@@ -50,6 +57,13 @@ function addBookInfoToDiv(book, div) {
   bookReadLabel.for = 'read-book';
   book.read == true ? bookReadLabel.textContent = 'Read' : bookReadLabel.textContent = 'Unread'; 
 
+  bookRead.appendChild(bookReadCheckbox);
+  bookRead.appendChild(bookReadLabel);
+
+  return bookRead
+}
+
+function createRemoveButton(book) {
   let bookRemoveButton = document.createElement('button');
   bookRemoveButton.classList.add('remove')
   bookRemoveButton.textContent = 'Remove book'
@@ -57,12 +71,14 @@ function addBookInfoToDiv(book, div) {
     document.querySelector(`[data-index="${book.index}"]`).remove();
   })
 
-  bookRead.appendChild(bookReadCheckbox);
-  bookRead.appendChild(bookReadLabel);
-  infoDiv.appendChild(bookTitle);
-  infoDiv.appendChild(bookAuthor);
-  infoDiv.appendChild(bookPages);
-  infoDiv.appendChild(bookRead);
+  return bookRemoveButton;
+}
+
+function addBookInfoToDiv(book, div) {
+  const infoDiv = createCardInfoDiv(book, div);
+  infoDiv.appendChild(createBookReadDiv(book));
+  const bookRemoveButton = createRemoveButton(book);
+
   div.appendChild(infoDiv);
   div.appendChild(bookRemoveButton);
   div.setAttribute('data-index',`${book.index}`);
