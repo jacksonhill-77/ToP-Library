@@ -29,6 +29,7 @@ function createCardInfoDiv(book, div) {
   let bookPages = document.createElement("p");
   bookPages.classList.add("body");
   bookPages.textContent = `${book.pages} pages`;
+
   infoDiv.appendChild(bookTitle);
   infoDiv.appendChild(bookAuthor);
   infoDiv.appendChild(bookPages);
@@ -45,9 +46,9 @@ function createBookReadDiv(book) {
   bookReadCheckbox.name = 'read-book';
   book.read == true ? bookReadCheckbox.checked = true : bookReadCheckbox.checked = false;
   bookReadCheckbox.addEventListener('change', function(e) {
-    label = document.querySelector(`div[data-index="${book.index}"]>label`);
+    label = document.querySelector(`div[data-index="${book.index}"] label`);
     if (e.target.checked) {
-      label.textContent = 'Unread';
+      label.textContent = 'Read';
     } else {
       label.textContent = 'Unread';
     }
@@ -79,9 +80,9 @@ function addBookInfoToDiv(book, div) {
   infoDiv.appendChild(createBookReadDiv(book));
   const bookRemoveButton = createRemoveButton(book);
 
+  div.setAttribute('data-index',`${book.index}`);
   div.appendChild(infoDiv);
   div.appendChild(bookRemoveButton);
-  div.setAttribute('data-index',`${book.index}`);
 }
 
 function addBookDivToContainer(book, container) {

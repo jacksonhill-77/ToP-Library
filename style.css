@@ -37,7 +37,7 @@ h4, p {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 20%);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
   width: 100%;
   justify-content: center;
@@ -48,7 +48,8 @@ h4, p {
   font-style: italic;
 }
 
-.body {
+.body, 
+label {
   font-size: 14px;
 }
 
@@ -93,4 +94,26 @@ button.remove {
   background-color: rgb(202, 225, 233);
   border: 2px rgb(76, 86, 88) solid;
   color: rgb(63, 71, 73);
+}
+
+input[type='text'] {
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+form {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+dialog {
+  border-color: rgb(76, 86, 88);
+  border-radius: 10px;
+}
+
+form button {
+  margin-top: 10px;
+  align-self: center;
 }
