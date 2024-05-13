@@ -1,9 +1,11 @@
-function Book(title, author, pages, read, index) {
-  this.title = title;
-  this.author = author; 
-  this.pages = pages;
-  this.read = read;
-  this.index = index;
+class Book {
+  constructor(title, author, pages, read, index) {
+    this.title = title;
+    this.author = author; 
+    this.pages = pages;
+    this.read = read;
+    this.index = index;
+  }
 }
 
 function generateBook(libraryArray) {
